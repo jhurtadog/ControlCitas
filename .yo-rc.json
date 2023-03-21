@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.13.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.4.1"
+    },
+    "version": "1.16.1",
+    "libraryName": "control-citas",
+    "libraryId": "0daf9c83-87f0-4bca-9c42-e84c0a0a74da",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "control-citas",
+    "solutionShortDescription": "control-citas description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

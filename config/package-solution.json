@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "control-citas-client-side-solution",
+    "id": "0daf9c83-87f0-4bca-9c42-e84c0a0a74da",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.16.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "control-citas description"
+      },
+      "longDescription": {
+        "default": "control-citas description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "control-citas Feature",
+        "description": "The feature that activates elements of the control-citas solution.",
+        "id": "d91635a3-5694-4dfd-9e4f-a6fbffcbb774",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/control-citas.sppkg"
+  }
+}
