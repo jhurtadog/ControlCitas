@@ -1,10 +1,15 @@
-# control-citas
-
+# Control Citas
+- Web Part en SharePoint online 2023
 ## Summary
 
-Short summary on functionality and used technologies.
+Creacion de Web Part para SharePoint
+- CRUD Opcion
+- Comprobacion de la Lista
+- Mensajes de Error
+- Mucho Mas
 
-[picture of the solution in action, if possible]
+<img width="1709" alt="Screenshot 2023-03-22 at 8 09 53 AM" src="https://user-images.githubusercontent.com/57419008/226992284-f039aaaa-8507-4e47-a27c-da0ed9f1c1b0.png">
+
 
 ## Used SharePoint Framework Version
 
@@ -19,13 +24,19 @@ Short summary on functionality and used technologies.
 
 ## Prerequisites
 
-> Any special pre-requisites?
+> Creacion de Lista con los campos: 
+  - Propietario Tipo String
+  - Email Tipo String
+  - Sintomas Tipo String Multilinea
+> Actualizar la URL con su temance id
+  <img width="1426" alt="Screenshot 2023-03-22 at 12 50 57 PM" src="https://user-images.githubusercontent.com/57419008/226994057-8a027dc9-36f0-4f05-b422-eb2f79dd58f4.png">
+
 
 ## Solution
 
 | Solution    | Author(s)                                               |
 | ----------- | ------------------------------------------------------- |
-| folder name | Author details (name, company, twitter alias with link) |
+| folder name | Jose Hurtado                                            |
 
 ## Version history
 
@@ -47,22 +58,6 @@ Short summary on functionality and used technologies.
 - in the command-line run:
   - **npm install**
   - **gulp serve**
-
-> Include any additional steps as needed.
-
-## Features
-
-Description of the extension that expands upon high-level summary above.
-
-This extension illustrates the following concepts:
-
-- topic 1
-- topic 2
-- topic 3
-
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
-
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
 
 ## References
 
