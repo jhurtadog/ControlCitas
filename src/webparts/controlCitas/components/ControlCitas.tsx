@@ -18,9 +18,9 @@ interface Item {
 }
 
 const ControlCitas: React.FC<IControlCitasProps> = (props) => {
-  const listName: string = 'ControlCita';
+  const { description, hasTeamsContext } = props;
+  const listName: string = description;
   const endPoint: string = `${props.context.pageContext.web.absoluteUrl}/_api/web/lists/getbytitle('${listName}')/items`;
-  const { hasTeamsContext } = props;
   const [siteLists, setSiteLists] = useState<Item[]>([]);
   const [reload, setReload] = useState<boolean>(false);
 
