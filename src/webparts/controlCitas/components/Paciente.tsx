@@ -7,10 +7,11 @@ interface IControlCitasPacienteProps {
   propietario: string;
   email: string;
   sintomas: string;
+  deleteItem: (arg: number) => void;
 }
 
 const Paciente: React.FC<IControlCitasPacienteProps> = (props) => {
-  const { nombre, propietario, email, sintomas } = props;
+  const { id, nombre, propietario, email, sintomas, deleteItem } = props;
 
   return (
     <div className={styles.cajaPaciente}>
@@ -34,6 +35,7 @@ const Paciente: React.FC<IControlCitasPacienteProps> = (props) => {
         <button
           className={styles.boton3}
           type="button"
+          onClick={() => deleteItem(id)}
         >
           Eliminar
         </button>

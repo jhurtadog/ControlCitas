@@ -1,10 +1,14 @@
 import * as React from "react";
 import styles from "./ControlCitas.module.scss";
+interface IControlCitasErrorProps {
+  description: string;
+}
 
-const Error: React.FC = () => {
+const Error: React.FC<IControlCitasErrorProps> = (props) => {
+  const { description } = props;
   return (
     <div className={styles.error}>
-      <p>{"Todos los campos son obligatorios"}</p>
+      <p>{description}</p>
     </div>
   );
 };

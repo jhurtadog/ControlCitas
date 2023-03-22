@@ -30,6 +30,7 @@ export default class ControlCitasWebPart extends BaseClientSideWebPart<IControlC
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
         userDisplayName: this.context.pageContext.user.displayName,
+        context: this.context,
       }
     );
 
