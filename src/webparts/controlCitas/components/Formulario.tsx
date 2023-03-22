@@ -6,24 +6,25 @@ import { useState } from "react";
 import Error from "./Error";
 import styles from "./ControlCitas.module.scss";
 interface IControlCitasPacienteProps {
+  messageError: string;
   createItem: (nombre: string, propietario: string, email: string, sintomas: string) => void;
 }
 
 const Formulario: React.FC<IControlCitasPacienteProps> = (props) => {
-  const { createItem } = props;
+  const { createItem, messageError } = props;
   const [nombre, setNombre] = useState("");
   const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
   const [sintomas, setSintomas] = useState("");
-  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if ([nombre, propietario, email, sintomas].includes("")) {
-      setError(true);
+      setErrorMessage('Todos los campos son obligatorios');
       return;
     }
-    setError(false);
+    setErrorMessage('');
     createItem(nombre, propietario, email, sintomas);
     setNombre("");
     setPropietario("");
@@ -33,7 +34,7 @@ const Formulario: React.FC<IControlCitasPacienteProps> = (props) => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.formulario}>
-      {error && <Error description="Todos los campos son obligatorios" />}
+      {(errorMessage || messageError) && <Error description={errorMessage || messageError} />}
       <h3 className={styles.subTitulo}>
         Añade Paciente y{" "}
         <span className={styles["sub-header"]}>Administralos:</span>

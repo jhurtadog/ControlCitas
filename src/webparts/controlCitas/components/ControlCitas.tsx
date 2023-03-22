@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -9,6 +10,11 @@ import Header from "./Header";
 import Formulario from "./Formulario";
 import Paciente from "./Paciente";
 import styles from "./ControlCitas.module.scss";
+import { spfi, SPFx } from "@pnp/sp";
+import "@pnp/sp/webs";
+import "@pnp/sp/lists";
+import "@pnp/sp/items";
+
 interface Item {
   Id: number;
   Title: string;
@@ -18,11 +24,12 @@ interface Item {
 }
 
 const ControlCitas: React.FC<IControlCitasProps> = (props) => {
-  const { description, hasTeamsContext } = props;
+  const { description, hasTeamsContext, context } = props;
   const listName: string = description;
   const endPoint: string = `${props.context.pageContext.web.absoluteUrl}/_api/web/lists/getbytitle('${listName}')/items`;
   const [siteLists, setSiteLists] = useState<Item[]>([]);
   const [reload, setReload] = useState<boolean>(false);
+  const [messageError, setMessageError] = useState<string>('');
 
   const deleteItem = (id: number): void => {
     const idList: number = id;
@@ -75,19 +82,33 @@ const ControlCitas: React.FC<IControlCitasProps> = (props) => {
           });
         } else {
           response.json().then((responseJSON) => {
-            console.log(responseJSON);
+            setMessageError(responseJSON["odata.error"].message.value);
           });
         }
       })
       .catch((error: any) => {
-        console.log(error);
+        console.log('errorCreateItem', error);
       });
   };
 
   useEffect(() => {
     (async () => {
+      const sp = spfi().using(SPFx(context));
+      //const items: any[] = await sp.web.lists.getByTitle(listName).items();
+      const listEnsureResult = await sp.web.lists.ensure(listName);
+      if (listEnsureResult.created) {
+        console.log("My List was created!");
+    } else {
+        console.log("My List already existed!");
+    }
+    })();
+  }, []);
+
+
+  useEffect(() => {
+    (async () => {
       const rawResponse: SPHttpClientResponse = await props.context.spHttpClient.get(endPoint, SPHttpClient.configurations.v1);
-      setSiteLists((await rawResponse.json()).value.map((list: { Title: string; Propietario: string }) => {return list;}));
+      setSiteLists((await rawResponse.json())?.value?.map((list: { Title: string; Propietario: string }) => {return list;}));
     })();
   }, [reload]);
 
@@ -95,13 +116,13 @@ const ControlCitas: React.FC<IControlCitasProps> = (props) => {
     <section
       className={`${styles.controlCitas} ${hasTeamsContext ? styles.teams : ""}`}>
       <Header />
-      <Formulario createItem={createItem} />
+      <Formulario createItem={createItem} messageError={messageError} />
       <div>
         <h2 className={styles.subTitulo}>
           Administra tus {""}
           <span className={styles["sub-header"]}>Pacientes y Citas</span>
         </h2>
-        {siteLists.map((paciente) => (
+        {siteLists && siteLists.map((paciente) => (
           <Paciente
             key={paciente.Id}
             id={paciente.Id}
